@@ -1,0 +1,46 @@
+<!DOCTYPE html> 
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario Login</title>
+    <link rel="stylesheet" href="sesion.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+    <div class="login-page">
+        <div class="form">
+            <!-- FORMULARIO DE REGISTRO -->
+            <form id="registroForm" class="register-form">
+                <input type="text" id="nombre" name="nombre" placeholder="Nombre" required />
+                <input type="text" id="apellidos" name="apellidos" placeholder="Apellidos" required />
+                <input type="email" id="correo" name="correo" placeholder="Correo Electrónico" required />
+                <input type="password" id="password" name="password" placeholder="Contraseña" required />
+                <input type="number" id="edad" name="edad" placeholder="Edad" min="0" max="120" required />
+                <label for="fechaNacimiento">Fecha de nacimiento</label>
+                <input type="date" id="fechaNacimiento" name="fechaNacimiento" required />
+                <select id="sexo" name="sexo" required class="input-sexo">
+                    <option value="">Selecciona tu sexo</option>
+                    <option value="M">Masculino</option>
+                    <option value="F">Femenino</option>
+                    <option value="Otro">Otro</option>
+                </select>
+                <br>
+                <button type="submit">Crear</button>
+                <p class="message">¿Quieres ingresar? <a href="#">Inicia Sesión</a></p>
+            </form>
+    
+            <!-- FORMULARIO DE LOGIN -->
+            <form id="loginForm" class="login-form">
+                <input type="email" id="loginCorreo" name="correo" placeholder="Usuario" required />
+                <input type="password" id="loginPassword" name="password" placeholder="Contraseña" required />
+                <button type="submit">Ingresar</button>
+                <p class="message">¿No registrado? <a href="#">Crea una cuenta</a></p>
+            </form>
+        </div>
+    </div>
+
+    <script src="sesion.js"></script>
+</body>
+</html>

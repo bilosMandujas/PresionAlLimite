@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendario</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+
+</head>
+<body>
+
+    <!-- Encabezado del calendario con botones de navegación -->
+    <div class="calendar-header">
+        <button class="boton-navegacion" onclick="cambiarMes(-1)">&#9664;</button>
+        <h2 id="mesActualLabel"></h2>
+        <button class="boton-navegacion" onclick="cambiarMes(1)">&#9654;</button>
+    </div>
+    
+    <button id="volverHoy" class="boton-navegacion" onclick="irAHoy()">Hoy</button>
+    <button id="resultado" class="boton-navegacion" onclick="irAHoy()">Resultados</button>
+    <button id="cerrarSesion" class="boton-navegacion" onclick="cerrarSesion()">Cerrar Sesion</button>
+
+    <table id="calendar">
+        
+        <thead>
+            <tr>
+                <th>Lun</th><th>Mar</th><th>Mié</th><th>Jue</th>
+                <th>Vie</th><th>Sáb</th><th>Dom</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <!-- Formulario oculto -->
+    <div id="formContainer" style="display: none;">
+        <form id="eventForm">
+            <h3>Registrar Datos Del Dia <span id="selectedDay"></span></h3>
+            <input type="hidden" id="day" name="day">
+
+            <label for="fecha">Fecha</label>
+            <input type="text" name="fecha" id="fecha" required readonly />
+
+
+            <label for="presionAlta">Presión Alta:</label>
+            <input type="text" id="presionAlta" required>
+
+            <label for="presionBaja">Presión Baja:</label>
+            <input type="text" id="presionBaja" required>
+
+            <label for="ritmoCardiaco">Ritmo Cardiaco:</label>
+            <input type="text" id="ritmoCardiaco" required>
+
+            <label for="observaciones">Observaciones:</label>
+            <input type="text" id="observaciones">
+
+            <button type="submit">Guardar</button>
+            <button type="button" onclick="cerrarFormulario()">Cancelar</button>
+        </form>
+    </div>
+
+    <script>
+        // Variables globales de mes y año
+        let fechaActual = new Date();
+        let month = fechaActual.getMonth() + 1;
+        let year = fechaActual.getFullYear();
+        const meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+
+        // Función para actualizar el título del calendario
+        function actualizarEncabezado() {
+    document.getElementById("mesActualLabel").innerText = `${meses[month - 1]} ${year}`;
+}
+
+        // Función para cambiar de mes
+        function cambiarMes(direccion) {
+            month += direccion;
+            if (month < 1) {
+                month = 12;
+                year--;
+            } else if (month > 12) {
+                month = 1;
+                year++;
+            }
+            actualizarEncabezado();
+        }
+
+        // Función para volver al día actual
+        function irAHoy() {
+            let hoy = new Date();
+            month = hoy.getMonth() + 1;
+            year = hoy.getFullYear();
+            actualizarEncabezado();
+        }
+
+        // Función para cerrar sesión y redirigir al inicio de sesión
+        function cerrarSesion() {
+        // Eliminar el token JWT del localStorage (o sessionStorage si lo usas)
+        localStorage.removeItem('token');  // Asegúrate de que el nombre coincida con el que usaste para guardar el token
+
+         // Redirigir a la página de inicio de sesión
+         window.location.href = "../inicioSesion/IniciodeSesion.html";  // Redirige desde Calendario.html a IniciodeSesion.html
+         // Redirige al login
+}
+
+
+        // Inicializar el calendario con el mes actual
+        actualizarEncabezado();
+    </script>
+
+</body>
+</html>
